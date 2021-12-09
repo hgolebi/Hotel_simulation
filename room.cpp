@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "Room.h"
+#include "room.h"
 
 Room::Room(std::string rank, int number_of_beds, double area, double fee, bool additional_furniture, Guests guests);
 {
