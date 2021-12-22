@@ -8,7 +8,7 @@
 class Room
 {
     private:
-        std::string rank;
+        enum rank;
         int number_of_beds;
         double area;
         double fee;

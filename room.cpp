@@ -2,7 +2,7 @@
 #include <vector>
 #include "room.h"
 
-Room::Room(std::string rank, int number_of_beds, double area, double fee, bool additional_furniture, Guests guests);
+Room::Room(enum rank, int number_of_beds, double area, double fee, bool additional_furniture, Guests guests);
 {
     this-> rank = rank;
     this-> number_of_beds = number_of_beds;
