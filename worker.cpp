@@ -1,5 +1,7 @@
 #include "worker.h"
 
+using namespace std;
+
 Worker::Worker(int id, double cash)
 {
     this->id = id;
@@ -10,12 +12,17 @@ Worker::~Worker() {};
 
 int Worker::get_id() const
 {
-    return this->id;
+    return id;
 }
 
 void Worker::work() {};
 
 void Worker::get_paid()
 {
-    cash += salary;
+    this->cash += salary;
+}
+
+void Worker::receive_tip(int tip)
+{
+    this->cash += tip;
 }
