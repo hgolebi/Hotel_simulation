@@ -1,5 +1,9 @@
 #include "group_of_guests.h"
 #include <algorithm>
+#include <iostream>
+
+
+using namespace std;
 
 GroupOfGuests::GroupOfGuests(int id, int size, int length_of_accomodation, double cash)
 {
@@ -19,26 +23,35 @@ int GroupOfGuests::get_size() const
     return this->size;
 }
 
-void GroupOfGuests::extend_the_time_of_accomodation(int days)
+int GroupOfGuests::get_room_id() const
 {
-    this->acc_length += days;
+    return this->room_id;
 }
 
-double GroupOfGuests::give_tip()
+
+void GroupOfGuests::extend_the_time_of_accomodation(int days)
+{
+    return;
+}
+
+void GroupOfGuests::give_tip(Worker& receiver)
 {
     srand(0);
     if (std::rand() % 2 == 0)
     {
-        return 0;
+        cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
+        return;
     }
-    double tip = double(std::rand() % 21);
+    int tip = std::rand() % 21;
     if (tip > this->cash)
     {
-        return 0;
+        cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
+        return;
     }
     else
     {
         this->cash -= tip;
-        return tip;
+        cout<<"Guests from room "<<get_room_id()<<" decided to give "<<tip<<"$ to worker "<<receiver.get_id()<<endl;
+        receiver.receive_tip(tip);
     }
 }
