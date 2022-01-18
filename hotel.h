@@ -4,17 +4,19 @@
 #include <iostream>
 #include <vector>
 #include "room.h"
+#include "worker.h"
+#include "group_of_guests.h"
 
 class Hotel
 {
     private:
         std::string name;
-        std::vector<*Room> rooms;
-        std::vector<*Worker> workers;
-        std::vector<*Guests> guests;
+        std::vector<Room*> rooms;
+        std::vector<Worker*> workers;
+        std::vector<GroupOfGuests*> guests;
         double capital;
     public:
-        Hotel(std::string, std::vector<*Room>, std::vector<*Worker>, std::vector<*Guests>, double);
+        Hotel(std::string, std::vector<Room*>, std::vector<Worker*>, std::vector<GroupOfGuests*>, double);
         void simulate();
 };
 
