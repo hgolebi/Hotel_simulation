@@ -9,7 +9,7 @@ class GroupOfGuests
 	    int acc_length;     // length of accomodation in days
 	    double cash;
     public:
-        GroupOfGuests(int id, int size, int length_of_accomodation, double cash);
+        GroupOfGuests(int id = 0, int size = 1, int length_of_accomodation = 5, double cash = 2000);
         double get_cash() const;
         int get_size() const;
         void extend_the_time_of_accomodation(int days);
