@@ -6,10 +6,10 @@ class Worker
 {
     protected:
         int id;
-		double cash;
+		int cash;
 		double salary;
     public:
-        Worker(int id, double cash);
+        Worker(int id, int cash);
         virtual ~Worker();
         int get_id() const;
         virtual void work() = 0;

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Worker::Worker(int id, double cash)
+Worker::Worker(int id, int cash)
 {
     this->id = id;
     this->cash = cash;
