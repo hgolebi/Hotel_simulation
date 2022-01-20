@@ -12,13 +12,14 @@ class GroupOfGuests
         int room_id;
     public:
         GroupOfGuests(int id, int size, int length_of_accomodation, int cash);
+        int get_id() const;
         int get_cash() const;
         int get_size() const;
         int get_room_id() const;
         void extend_the_time_of_accomodation(int days);
         int order_the_meal();
         int go_to_the_restaurant();
-        void demand_waking_up();
+        void demand_taxi();
         int go_to_the_casino();
         void give_tip(Worker& receiver);
 

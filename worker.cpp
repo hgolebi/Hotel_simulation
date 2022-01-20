@@ -15,7 +15,7 @@ int Worker::get_id() const
     return id;
 }
 
-void Worker::work() {};
+void Worker::work(GroupOfGuests& guests) {};
 
 void Worker::get_paid()
 {

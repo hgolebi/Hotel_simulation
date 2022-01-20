@@ -19,6 +19,11 @@ GroupOfGuests::GroupOfGuests(int id, int size, int length_of_accomodation, int c
     this->cash = cash;
 }
 
+int GroupOfGuests::get_id() const
+{
+    return this->id;
+}
+
 int GroupOfGuests::get_cash() const
 {
     return this->cash;
@@ -94,9 +99,20 @@ int GroupOfGuests::go_to_the_restaurant()
     return cash_spent;
 }
 
-void GroupOfGuests::demand_waking_up()
+void GroupOfGuests::demand_taxi()
 {
-    cout<<"Guests from room "<<get_room_id()<<" demanded waking up"<<endl;
+    if (cash < 10)
+    {
+        cout<<"Guests from room "<<get_room_id()<<" wanted to call for taxi but they couldn't aford it"<<endl;
+    }
+    int cash_spent = random() % 100 + 10;
+    if (cash_spent > cash)
+    {
+        cash_spent = random() % (cash - 10) + 10;
+    }
+    cout<<"Guests from room "<<get_room_id()<<" want hotel receptionist to call for a taxi "<<endl;
+    cout<<"This course will cost them "<<cash_spent<<"$"<<endl;
+    cash -= cash_spent;
 }
 
 int GroupOfGuests::go_to_the_casino()
