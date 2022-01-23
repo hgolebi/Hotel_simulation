@@ -15,6 +15,11 @@ int Worker::get_id() const
     return id;
 }
 
+int Worker::get_cash() const
+{
+    return cash;
+}
+
 void Worker::work(GroupOfGuests& guests) {};
 
 void Worker::get_paid()
