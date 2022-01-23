@@ -1,0 +1,14 @@
+type_of_worker 	id 	cash
+croupier         1        500
+room_service     2        1000
+waiter           3        2500
+receptionist     4         475
+receptionist     5        2205
+waiter           6        1150
+room_service     7         750
+croupier         8         400
+croupier         9         1250
+room_service     10        5000
+receptionist     11        4000
+receptionist     12        3750
+room_service     13        480

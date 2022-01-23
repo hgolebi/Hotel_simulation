@@ -28,7 +28,18 @@ int main(int argc, char* argv[])
     */
 
     Hotel hotel("Hotel");
-    cout << hotel.get_capital() << endl;
+
+    int time_interval = atoi(argv[1]);
+    string arg1(argv[2]);
+    int number_of_guests = atoi(argv[3]);
+    string arg2(argv[4]);
+    int number_of_rooms = atoi(argv[5]);
+    string arg3(argv[6]);
+    int number_of_workers = atoi(argv[7]);
+
+    hotel.Read_Guests_From_File(arg1);
+    hotel.Read_Rooms_From_File(arg2);
+    hotel.Read_Workers_From_File(arg3);
 
     return 0;
 }
