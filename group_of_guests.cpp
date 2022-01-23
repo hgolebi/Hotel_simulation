@@ -1,4 +1,5 @@
 #include "group_of_guests.h"
+#include "hotel.h"
 #include <algorithm>
 #include <iostream>
 #include <random>
@@ -11,12 +12,34 @@ using namespace std;
 unsigned seed = chrono::system_clock::now().time_since_epoch().count();
 mt19937 random (seed);
 
-GroupOfGuests::GroupOfGuests(int id, int size, int length_of_accomodation, int cash)
+GroupOfGuests::GroupOfGuests(int id, int size, int acc_length, int cash)
 {
     this->id = id;
     this->size = size;
-    this->acc_length = length_of_accomodation;
+    this->acc_length = acc_length;
     this->cash = cash;
+}
+
+GroupOfGuests::GroupOfGuests(const GroupOfGuests& source)
+{
+    id = source.id;
+    size = source.size;
+    acc_length = source.acc_length;
+    cash = source.cash;
+    room_id = source.room_id;
+}
+
+GroupOfGuests& GroupOfGuests::operator=(const GroupOfGuests& source)
+{
+    if(this != &source)
+    {
+        id = source.id;
+        size = source.size;
+        acc_length = source.acc_length;
+        cash = source.cash;
+        room_id = source.room_id;
+    }
+    return *this;
 }
 
 void GroupOfGuests::set_room_id(int room_id)
@@ -79,7 +102,7 @@ int GroupOfGuests::order_the_meal()
 {
     if (cash < 10)
     {
-        cout<<"Guests from room "<<get_room_id()<<" wanted to order a meal but they couldn't aford it"<<endl;
+        cout<<"Guests from room "<<get_room_id()<<" wanted to order a meal but they couldn't afford it"<<endl;
         return 0;
     }
     int cash_spent = random() % 100 + 10;
@@ -96,7 +119,7 @@ int GroupOfGuests::go_to_the_restaurant()
 {
     if (cash < 10)
     {
-        cout<<"Guests from room "<<get_room_id()<<" wanted to go to the restaurant but they couldn't aford it"<<endl;
+        cout<<"Guests from room "<<get_room_id()<<" wanted to go to the restaurant but they couldn't afford it"<<endl;
         return 0;
     }
     int cash_spent = random() % 100 + 10;
@@ -113,7 +136,7 @@ void GroupOfGuests::demand_taxi()
 {
     if (cash < 10)
     {
-        cout<<"Guests from room "<<get_room_id()<<" wanted to call for taxi but they couldn't aford it"<<endl;
+        cout<<"Guests from room "<<get_room_id()<<" wanted to call for taxi but they couldn't afford it"<<endl;
     }
     int cash_spent = random() % 100 + 10;
     if (cash_spent > cash)
@@ -129,7 +152,7 @@ int GroupOfGuests::go_to_the_casino()
 {
     if (cash < 10)
     {
-        cout<<"Guests from room "<<get_room_id()<<" wanted to go to the casino but they couldn't aford it"<<endl;
+        cout<<"Guests from room "<<get_room_id()<<" wanted to go to the casino but they couldn't afford it"<<endl;
         return 0;
     }
     int profit = random() % cash + 1;

@@ -8,18 +8,20 @@
 class Room
 {
     private:
-        enum rank {};
+        std::string type;
         int number_of_beds;
         double area;
         double fee;
         bool additional_furniture;
         GroupOfGuests guests;
     public:
-        Room(enum, int, double, double, bool, GroupOfGuests);
-        void change_number_of_guests();
-        void get_cleaned();
-        void next_day(); // metoda po upływie dnia aktualizuje length_of_accomodation gości i pobiera opłatę,
-        // jeśli goście kończą pobyt
+        Room(std::string, int, double, double, bool);
+        void change_guests(GroupOfGuests guests);
+        std::string get_type() const;
+        int get_number_of_beds() const;
+        double get_area() const;
+        double get_fee() const;
+        bool get_additional_furniture() const;
 };
 
 #endif

@@ -13,6 +13,7 @@ class Worker
         Worker(int id, int cash);
         virtual ~Worker();
         int get_id() const;
+        int get_cash() const;
         virtual void work(GroupOfGuests& guests) = 0;
 		void get_paid();
         void receive_tip(int tip);
