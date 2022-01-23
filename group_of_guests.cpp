@@ -19,6 +19,11 @@ GroupOfGuests::GroupOfGuests(int id, int size, int length_of_accomodation, int c
     this->cash = cash;
 }
 
+void GroupOfGuests::set_room_id(int room_id)
+{
+    this->room_id = room_id;
+}
+
 int GroupOfGuests::get_id() const
 {
     return this->id;
@@ -34,6 +39,11 @@ int GroupOfGuests::get_size() const
     return this->size;
 }
 
+int GroupOfGuests::get_acc_length() const
+{
+    return this->acc_length;
+}
+
 int GroupOfGuests::get_room_id() const
 {
     return this->room_id;
@@ -44,26 +54,26 @@ void GroupOfGuests::extend_the_time_of_accomodation(int days)
     return;
 }
 
-void GroupOfGuests::give_tip(Worker& receiver)
-{
-    if (random() % 2 == 0)
-    {
-        cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
-        return;
-    }
-    int tip = random() % 21;
-    if (tip > this->cash)
-    {
-        cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
-        return;
-    }
-    else
-    {
-        this->cash -= tip;
-        cout<<"Guests from room "<<get_room_id()<<" decided to give "<<tip<<"$ to worker "<<receiver.get_id()<<endl;
-        receiver.receive_tip(tip);
-    }
-}
+// void GroupOfGuests::give_tip(Worker& receiver)
+// {
+//     if (random() % 2 == 0)
+//     {
+//         cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
+//         return;
+//     }
+//     int tip = random() % 21;
+//     if (tip > this->cash)
+//     {
+//         cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
+//         return;
+//     }
+//     else
+//     {
+//         this->cash -= tip;
+//         cout<<"Guests from room "<<get_room_id()<<" decided to give "<<tip<<"$ to worker "<<receiver.get_id()<<endl;
+//         receiver.receive_tip(tip);
+//     }
+// }
 
 int GroupOfGuests::order_the_meal()
 {
@@ -135,4 +145,11 @@ int GroupOfGuests::go_to_the_casino()
         cash += profit;
         return -profit;
     }
+}
+
+ostream& operator<<(ostream& os, GroupOfGuests& g)
+{
+    os<<"Group no. "<<g.get_id()<<"consisting of "<<g.get_size()<<"people stays in room "<<g.get_room_id()<<"."<<endl;
+    os<<"Staying for: "<<g.get_acc_length()<<" days. Available cash: "<<g.get_cash()<<"$"<<endl;
+    return os;
 }
