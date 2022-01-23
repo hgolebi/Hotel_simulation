@@ -77,26 +77,26 @@ void GroupOfGuests::extend_the_time_of_accomodation(int days)
     return;
 }
 
-// void GroupOfGuests::give_tip(Worker& receiver)
-// {
-//     if (random() % 2 == 0)
-//     {
-//         cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
-//         return;
-//     }
-//     int tip = random() % 21;
-//     if (tip > this->cash)
-//     {
-//         cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
-//         return;
-//     }
-//     else
-//     {
-//         this->cash -= tip;
-//         cout<<"Guests from room "<<get_room_id()<<" decided to give "<<tip<<"$ to worker "<<receiver.get_id()<<endl;
-//         receiver.receive_tip(tip);
-//     }
-// }
+int GroupOfGuests::give_tip(int worker_id)
+{
+    if (random() % 2 == 0)
+    {
+        cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
+        return 0;
+    }
+    int tip = random() % 21;
+    if (tip > this->cash)
+    {
+        cout<<"Guests from room "<<get_room_id()<<" decided to give no tip"<<endl;
+        return 0;
+    }
+    else
+    {
+        this->cash -= tip;
+        cout<<"Guests from room "<<get_room_id()<<" decided to give "<<tip<<"$ to worker "<<worker_id<<endl;
+        return tip;
+    }
+}
 
 int GroupOfGuests::order_the_meal()
 {

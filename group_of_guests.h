@@ -1,6 +1,5 @@
 #ifndef GROUP_OF_GUESTS_H
 #define GROUP_OF_GUESTS_H
-#include "worker.h"
 #include <iostream>
 
 class GroupOfGuests
@@ -26,7 +25,7 @@ class GroupOfGuests
         int go_to_the_restaurant();
         void demand_taxi();
         int go_to_the_casino();
-        void give_tip(Worker& receiver);
+        int give_tip(int worker_id);
 
     friend std::ostream& operator<<(std::ostream& os, GroupOfGuests& g);
 };
