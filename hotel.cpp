@@ -24,32 +24,37 @@ int Hotel::get_capital()
 
 void Hotel::Add_Guests(int id, int size, int acc_length, int cash)
 {
-    GroupOfGuests groupofguest(id, size, acc_length, cash);
-    guests.push_back(&groupofguest);
+    GroupOfGuests* g = new GroupOfGuests(id, size, acc_length, cash);
+    guests.push_back(g);
 }
 
 void Hotel::Add_Room(std::string type, int number_of_beds, double area, double fee, bool additional_furniture)
 {
-    Room room(type, number_of_beds, area, fee, additional_furniture);
-    rooms.push_back(&room);
+    Room *r = new Room(type, number_of_beds, area, fee, additional_furniture);
+    rooms.push_back(r);
 }
 
 void Hotel::Add_Worker(string type_of_worker, int id, int cash)
 {
     if (type_of_worker == "croupier")
     {
-        Croupier worker(id, cash);
-        workers.push_back(&worker);
+        Croupier *worker = new Croupier(id, cash);
+        workers.push_back(worker);
     }
     else if (type_of_worker == "receptionist")
     {
-        Receptionist worker(id, cash);
-        workers.push_back(&worker);
+        Receptionist *worker = new Receptionist(id, cash);
+        workers.push_back(worker);
     }
     else if (type_of_worker == "waiter")
     {
-        Waiter worker(id, cash);
-        workers.push_back(&worker);
+        Waiter *worker = new Waiter(id, cash);
+        workers.push_back(worker);
+    }
+    else if (type_of_worker == "room_service")
+    {
+        RoomService *worker = new RoomService(id, cash);
+        workers.push_back(worker);
     }
 }
 

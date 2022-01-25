@@ -18,6 +18,7 @@ GroupOfGuests::GroupOfGuests(int id, int size, int acc_length, int cash)
     this->size = size;
     this->acc_length = acc_length;
     this->cash = cash;
+    this->room_id = -1;
 }
 
 GroupOfGuests::GroupOfGuests(const GroupOfGuests& source)
@@ -172,7 +173,15 @@ int GroupOfGuests::go_to_the_casino()
 
 ostream& operator<<(ostream& os, GroupOfGuests& g)
 {
-    os<<"Group no. "<<g.get_id()<<"consisting of "<<g.get_size()<<"people stays in room "<<g.get_room_id()<<"."<<endl;
-    os<<"Staying for: "<<g.get_acc_length()<<" days. Available cash: "<<g.get_cash()<<"$"<<endl;
+    if (g.room_id > 0)
+    {
+        os<<"Group no. "<<g.get_id()<<" consisting of "<<g.get_size()<<" people stays in room "<<g.get_room_id()<<"."<<endl;
+        os<<"Staying for: "<<g.get_acc_length()<<" day(s). Available cash: "<<g.get_cash()<<"$"<<endl;
+    }
+    else
+    {
+        os<<"Group no. "<<g.get_id()<<" consisting of "<<g.get_size()<<" people isn't staying in this hotel."<<endl;
+        os<<"Available cash: "<<g.get_cash()<<"$"<<endl;
+    }
     return os;
 }

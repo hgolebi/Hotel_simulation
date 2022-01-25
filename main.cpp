@@ -4,6 +4,7 @@
 #include "hotel.h"
 #include "simulation.h"
 #include "group_of_guests.h"
+#include "data.h"
 
 #include <string>
 #include <fstream>
@@ -30,16 +31,21 @@ int main(int argc, char* argv[])
     Hotel hotel("Hotel");
 
     int time_interval = atoi(argv[1]);
-    string arg1(argv[2]);
+    string g_addr(argv[2]);
     int number_of_guests = atoi(argv[3]);
-    string arg2(argv[4]);
+    string r_addr(argv[4]);
     int number_of_rooms = atoi(argv[5]);
-    string arg3(argv[6]);
+    string w_addr(argv[6]);
     int number_of_workers = atoi(argv[7]);
 
-    hotel.Read_Guests_From_File(arg1);
-    hotel.Read_Rooms_From_File(arg2);
-    hotel.Read_Workers_From_File(arg3);
+
+    // testy
+    Data handle(g_addr, r_addr, w_addr);
+    handle.loadGuests(hotel, number_of_guests);
+    handle.loadRooms(hotel, number_of_rooms);
+    handle.loadWorkers(hotel, number_of_workers);
+
+
 
     return 0;
 }

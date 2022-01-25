@@ -10,6 +10,7 @@
 #include "croupier.h"
 #include "receptionist.h"
 #include "waiter.h"
+#include "room_service.h"
 
 using namespace std;
 
@@ -35,6 +36,8 @@ class Hotel : public Simulation
         void Read_Guests_From_File(string) override;
         void Read_Rooms_From_File(string) override;
         void Read_Workers_From_File(string) override;
+
+        friend class Data;
 };
 
 #endif
