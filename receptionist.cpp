@@ -10,5 +10,5 @@ Receptionist::Receptionist(int id, int cash): Worker(id, cash)
 
 void Receptionist::work(GroupOfGuests& guests)
 {
-    cout<<"Receptionist "<<id<<" called for taxi for guests "<<guests.get_id()<<endl;
+    cout<<"Receptionist "<<id<<" called for taxi for guests no. "<<guests.get_id()<<endl;
 }

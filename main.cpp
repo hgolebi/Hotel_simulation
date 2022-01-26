@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     argv[7] - number_of_workers
     */
 
-    Hotel hotel("Hotel");
+    Hotel hotel("Hotel Paradise");
 
     int time_interval = atoi(argv[1]);
     hotel.set_time_interval(time_interval);

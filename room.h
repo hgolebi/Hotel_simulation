@@ -11,19 +11,19 @@ class Room
         int id;
         std::string type;
         int number_of_beds;
-        double area;
-        double fee;
+        int area;
+        int fee;
         bool additional_furniture;
         GroupOfGuests *guests;
     public:
-        Room(int, std::string, int, double, double, bool);
+        Room(int, std::string, int, int, int, bool);
         void change_guests(GroupOfGuests &guests);
         void checkout();
         int get_id() const;
         std::string get_type() const;
         int get_number_of_beds() const;
-        double get_area() const;
-        double get_fee() const;
+        int get_area() const;
+        int get_fee() const;
         bool get_additional_furniture() const;
 
         friend class Hotel;

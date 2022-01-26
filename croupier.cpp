@@ -10,5 +10,5 @@ Croupier::Croupier(int id, int cash): Worker(id, cash)
 
 void Croupier::work(GroupOfGuests& guests)
 {
-    cout<<"Croupier "<<id<<" served guests "<<guests.get_id()<<" in casino"<<endl;
+    cout<<"Croupier "<<id<<" served guests no. "<<guests.get_id()<<" in casino"<<endl;
 }

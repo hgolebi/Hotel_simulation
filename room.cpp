@@ -2,7 +2,7 @@
 #include <vector>
 #include "room.h"
 
-Room::Room(int id, std::string type, int number_of_beds, double area, double fee, bool additional_furniture)
+Room::Room(int id, std::string type, int number_of_beds, int area, int fee, bool additional_furniture)
 {
     this-> id = id;
     this-> type = type;
@@ -51,12 +51,12 @@ int Room::get_number_of_beds() const
 {
     return number_of_beds;
 }
-double Room::get_area() const
+int Room::get_area() const
 {
     return area;
 }
 
-double Room::get_fee() const
+int Room::get_fee() const
 {
     return fee;
 }
