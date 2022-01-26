@@ -6,6 +6,7 @@ using namespace std;
 RoomService::RoomService(int id, int cash): Worker(id, cash)
 {
     salary = 18;
+    profession = room_service;
 }
 
 void RoomService::work(GroupOfGuests& guests)

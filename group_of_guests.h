@@ -20,7 +20,7 @@ class GroupOfGuests
         int get_size() const;
         int get_acc_length() const;
         int get_room_id() const;
-        void extend_the_time_of_accomodation(int days);
+        int extend_the_time_of_accomodation(int days, int prize);
         int order_the_meal();
         int go_to_the_restaurant();
         void demand_taxi();

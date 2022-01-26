@@ -120,7 +120,6 @@ void Data::loadWorkers(Hotel &h, int num)
 
     // Test Workers from File
     for (int i = 0; i < num; i++) {
-        cout << "id: " << h.workers[i]->get_id() << " " // tutaj by sie przydalo wypisywac jakos typ workera
-        << "Cash: " << h.workers[i]->get_cash() << "\n";
+        cout << *(h.workers[i]);
     }
 }

@@ -5,6 +5,7 @@ using namespace std;
 Receptionist::Receptionist(int id, int cash): Worker(id, cash)
 {
     salary = 20;
+    profession = receptionist;
 }
 
 void Receptionist::work(GroupOfGuests& guests)

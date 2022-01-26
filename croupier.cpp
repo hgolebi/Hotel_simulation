@@ -5,6 +5,7 @@ using namespace std;
 Croupier::Croupier(int id, int cash): Worker(id, cash)
 {
     salary = 23;
+    profession = croupier;
 }
 
 void Croupier::work(GroupOfGuests& guests)
