@@ -20,6 +20,23 @@ void Room::change_guests(GroupOfGuests &guests)
     guests.set_room_id(id);
 }
 
+void Room::checkout()
+{
+    if (guests == nullptr) {return;}
+    else if (guests->get_acc_length() > 0)
+    {
+        guests->decrese_acc_lenght();
+        return;
+    }
+    else
+    {
+        cout<<"Guests no. "<<guests->get_id()<<" checked out of room no. "<<get_id()<<endl;
+        guests->set_room_id(-1);
+        guests = nullptr;
+        return;
+    }
+}
+
 int Room::get_id() const
 {
     return id;
