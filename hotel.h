@@ -32,6 +32,7 @@ class Hotel : public Simulation
         void Add_Room(int, string, int, double, double, bool);
         void Add_Worker(string, int, int);
         void Add_Guests(int, int, int, int);
+        void Accomodation(GroupOfGuests &guests);
         ~Hotel();
 
         string get_name();

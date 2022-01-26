@@ -51,7 +51,7 @@ void Hotel::Info()
     for (int i = 0; i < rooms.size(); i++) {
        cout << *(rooms[i]);
     }
-
+    cout << endl;
 }
 
 void Hotel::Add_Guests(int id, int size, int acc_length, int cash)
@@ -109,11 +109,16 @@ void sleep(float seconds){
     return;
 }
 
+void Hotel::Accomodation(GroupOfGuests &guests)
+{
+
+}
+
 void Hotel::Simulate()
 {
-    cout << "Hello" << endl;
+    cout << "Welcome to our Hotel" << endl;
     sleep(0.5);
-    cout << "Waited 5s\n";
+    cout << "Waited 0.5s\n";
 
     Info();
     rooms[1]->change_guests(*(guests[2]));

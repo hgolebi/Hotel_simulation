@@ -11,8 +11,7 @@ Room::Room(int id, std::string type, int number_of_beds, double area, double fee
     this-> fee = fee;
     this-> additional_furniture = additional_furniture;
 
-    GroupOfGuests g;
-    this-> guests = &g;
+    this-> guests = nullptr;
 }
 
 void Room::change_guests(GroupOfGuests &guests)
@@ -52,8 +51,7 @@ bool Room::get_additional_furniture() const
 
 ostream& operator<<(ostream& os, Room& r)
 {
-    GroupOfGuests g;
-    if ((r.guests == &g) != true)
+    if (r.guests != nullptr)
     {
        os << "ID: " << r.get_id() << " " << "Type: " << r.get_type() << " "
        << "Number of beds: " << r.get_number_of_beds() << " "
