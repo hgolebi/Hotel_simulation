@@ -2,6 +2,8 @@
 #define GROUP_OF_GUESTS_H
 #include <iostream>
 
+using namespace std;
+
 class GroupOfGuests
 {
     private:
@@ -27,7 +29,11 @@ class GroupOfGuests
         int go_to_the_casino();
         int give_tip(int worker_id);
 
-    friend std::ostream& operator<<(std::ostream& os, GroupOfGuests& g);
+        bool operator==(const GroupOfGuests& other) const;
+
+    friend ostream& operator<<(ostream& os, GroupOfGuests& g);
 };
+
+ostream& operator<<(ostream& os, GroupOfGuests& g);
 
 #endif

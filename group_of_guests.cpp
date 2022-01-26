@@ -5,7 +5,6 @@
 #include <random>
 #include <chrono>
 
-
 using namespace std;
 
 // pseudo-random number generetor initialization
@@ -75,7 +74,7 @@ int GroupOfGuests::get_room_id() const
 
 void GroupOfGuests::extend_the_time_of_accomodation(int days)
 {
-    return;
+    acc_length+=days;
 }
 
 int GroupOfGuests::give_tip(int worker_id)
@@ -170,6 +169,16 @@ int GroupOfGuests::go_to_the_casino()
         return -profit;
     }
 }
+
+bool GroupOfGuests::operator==(const GroupOfGuests& other) const
+{
+    if (id == other.id && size == other.size && acc_length == other.acc_length && cash == other.cash && room_id == other.room_id)
+    {
+        return true;
+    }
+    return false;
+}
+
 
 ostream& operator<<(ostream& os, GroupOfGuests& g)
 {
