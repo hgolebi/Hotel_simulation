@@ -39,17 +39,13 @@ void Data::loadGuests(Hotel &h, int num)
     if ( fileIn.is_open() ) {
         fileIn.close();
     }
-
-    // Test Guests from File
-    for (int i = 0; i < num; i++) {
-        cout << *(h.guests[i]);
-    }
 }
 
 void Data::loadRooms(Hotel &h, int num)
 {
     ifstream fileIn;
 
+    int id;
     string type;
     int number_of_beds;
     double area;
@@ -63,28 +59,19 @@ void Data::loadRooms(Hotel &h, int num)
 
     string line;
     getline(fileIn, line);
-    if (line != "type 	number_of_beds	 area 	fea	 additional_furniture")
+    if (line != "id type 	number_of_beds	 area 	fea	 additional_furniture")
     {
         cerr << "WRONG FILE HEAD LINE";
     }
 
     for (int i=0; i<num && !fileIn.eof(); i++)
     {
-        fileIn >> type >> number_of_beds >> area >> fee >> additional_furniture;
-        h.Add_Room(type, number_of_beds, area, fee, additional_furniture);
+        fileIn >> id >> type >> number_of_beds >> area >> fee >> additional_furniture;
+        h.Add_Room(id, type, number_of_beds, area, fee, additional_furniture);
     }
 
     if ( fileIn.is_open() ) {
         fileIn.close();
-    }
-
-    // Test Rooms from File
-    for (int i = 0; i < num; i++) {
-        cout << "Type: " << h.rooms[i]->get_type() << " "
-        << "Number of beds: " << h.rooms[i]->get_number_of_beds() << " "
-        << "Area: " << h.rooms[i]->get_area() << " "
-        << "Fee: " << h.rooms[i]->get_fee() << " "
-        << "Additional furniture: " << h.rooms[i]->get_additional_furniture() << "\n";
     }
 }
 
@@ -116,11 +103,5 @@ void Data::loadWorkers(Hotel &h, int num)
 
     if ( fileIn.is_open() ) {
         fileIn.close();
-    }
-
-    // Test Workers from File
-    for (int i = 0; i < num; i++) {
-        cout << "id: " << h.workers[i]->get_id() << " " // tutaj by sie przydalo wypisywac jakos typ workera
-        << "Cash: " << h.workers[i]->get_cash() << "\n";
     }
 }
