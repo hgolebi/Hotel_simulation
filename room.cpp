@@ -25,7 +25,7 @@ void Room::checkout()
     if (guests == nullptr) {return;}
     else if (guests->get_acc_length() > 0)
     {
-        guests->decrese_acc_lenght();
+        guests->decrease_acc_length();
         return;
     }
     else

@@ -17,7 +17,7 @@ class GroupOfGuests
         GroupOfGuests(const GroupOfGuests& source);
         GroupOfGuests& operator=(const GroupOfGuests& source);
         void set_room_id(int room_id);
-        void decrese_acc_lenght(int days = 1);
+        void decrease_acc_length(int days = 1);
         int get_id() const;
         int get_cash() const;
         int get_size() const;
