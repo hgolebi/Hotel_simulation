@@ -120,17 +120,15 @@ void Hotel::Accomodation(GroupOfGuests &guests)
     {
         if (guests.get_cash() >= rooms[i]->get_fee()*guests.get_acc_length() && guests.get_size() <= rooms[i]->get_number_of_beds())
         {
-            // zmniejsz cash
+            guests.pay(rooms[i]->get_fee()*guests.get_acc_length());
             rooms[i]->change_guests(guests);
             cout << "Guests no. "<<guests.get_id()<<" accomodated in room no. "<<rooms[i]->get_id()<<endl;
             sleep(3);
             return;
         }
     }
+    return;
 }
-
-// Room r = *rooms[generator()%(rooms.size())];
-//             if (r.guests == nullptr)
 
 void Hotel::Simulate()
 {
@@ -143,8 +141,7 @@ void Hotel::Simulate()
         cout << "======================================" << endl;
         cout << "DAY " << i << endl;
         cout << "======================================" << endl;
-        // jesli nie zyja w hotelu to akomoduje
-        // a jesli zyja to losujesz jedna metode
+
         for (auto guest : guests)
         {
             if (guest->get_room_id() == -1)
@@ -157,7 +154,6 @@ void Hotel::Simulate()
                 case 0:
                 {
                     capital += guest->extend_the_time_of_accomodation(generator()%5, rooms[guest->get_room_id()]->get_fee());
-
                 }
                 case 1:
                 {
@@ -186,7 +182,14 @@ void Hotel::Simulate()
                 }
                 case 3:
                 {
-
+                    bool if_taxi = guest->demand_taxi();
+                    if (if_taxi == false)
+                    {
+                        break;
+                    }
+                    int x = generator()%workers["Receptionist"].size();
+                    Worker *W = workers["Receptionist"][x];
+                    W->receive_tip(guest->give_tip(W->get_id()));
                 }
                 case 4:
                 {
@@ -204,8 +207,6 @@ void Hotel::Simulate()
             }
         }
     }
-
-    cout << "Waited 0.5s\n";
 
     Info();
     rooms[1]->change_guests(*(guests[2]));
