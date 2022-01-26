@@ -1,7 +1,6 @@
 #include <iostream>
 #include <chrono>
 #include <random>
-#include <ctime>
 #include "hotel.h"
 #include "simulation.h"
 #include "group_of_guests.h"
@@ -12,21 +11,8 @@
 
 using namespace std;
 
-void sleep(float seconds){
-    clock_t startClock = clock();
-    float secondsAhead = seconds * CLOCKS_PER_SEC;
-    // do nothing until the elapsed time has passed.
-    while(clock() < startClock+secondsAhead);
-    return;
-}
-
 int main(int argc, char* argv[])
 {
-    /*unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-
-    std::mt19937 generator (seed);  // mt19937 is a standard mersenne_twister_engine
-    std::cout << "Random value: " << generator() << std::endl; */
-
     /*
     argv[1] - time_interval
     argv[2] - Guests
@@ -47,18 +33,13 @@ int main(int argc, char* argv[])
     string w_addr(argv[6]);
     int number_of_workers = atoi(argv[7]);
 
-
-    // testy
+    // loading files
     Data handle(g_addr, r_addr, w_addr);
     handle.loadGuests(hotel, number_of_guests);
     handle.loadRooms(hotel, number_of_rooms);
     handle.loadWorkers(hotel, number_of_workers);
 
-    cout << "Hello waiter" << endl;
-    sleep(5.0);
-    cout << "Waited 5s\n";
-
-    hotel.Info();
+    hotel.Simulate();
 
     return 0;
 }

@@ -12,12 +12,13 @@ Room::Room(int id, std::string type, int number_of_beds, double area, double fee
     this-> additional_furniture = additional_furniture;
 
     GroupOfGuests g;
-    this-> guests = g;
+    this-> guests = &g;
 }
 
 void Room::change_guests(GroupOfGuests &guests)
 {
-    this -> guests = guests;
+    this -> guests = &guests;
+    guests.set_room_id(id);
 }
 
 int Room::get_id() const
@@ -52,15 +53,23 @@ bool Room::get_additional_furniture() const
 ostream& operator<<(ostream& os, Room& r)
 {
     GroupOfGuests g;
-    if ((r.guests == g) != true)
+    if ((r.guests == &g) != true)
     {
-        os<<"Group no. "<<g.get_id()<<" consisting of "<<g.get_size()<<" people stays in room "<<g.get_room_id()<<"."<<endl;
-        os<<"Staying for: "<<g.get_acc_length()<<" day(s). Available cash: "<<g.get_cash()<<"$"<<endl;
+       os << "ID: " << r.get_id() << " " << "Type: " << r.get_type() << " "
+       << "Number of beds: " << r.get_number_of_beds() << " "
+       << "Area: " << r.get_area() << " "
+       << "Fee: " << r.get_fee() << " "
+        << "Additional furniture: " << std::boolalpha << r.get_additional_furniture() << "\n"
+        << "In this room stays group of guests of id: " << r.guests->get_id() << "\n";
     }
     else
     {
-        os<<"Group no. "<<g.get_id()<<" consisting of "<<g.get_size()<<" people isn't staying in this hotel."<<endl;
-        os<<"Available cash: "<<g.get_cash()<<"$"<<endl;
+        os << "ID: " << r.get_id() << " " << "Type: " << r.get_type() << " "
+       << "Number of beds: " << r.get_number_of_beds() << " "
+       << "Area: " << r.get_area() << " "
+       << "Fee: " << r.get_fee() << " "
+        << "Additional furniture: " << std::boolalpha << r.get_additional_furniture() << "\n "
+        << "The room is empty " << "\n";
     }
     return os;
 }

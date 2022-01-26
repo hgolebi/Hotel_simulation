@@ -3,6 +3,8 @@
 #include <iostream>
 #include "group_of_guests.h"
 
+using namespace std;
+
 class Worker
 {
     public:
@@ -23,12 +25,14 @@ class Worker
         int get_id() const;
         int get_cash() const;
         int get_salary() const;
-        std::string get_profession() const;
+        string get_profession() const;
         virtual void work(GroupOfGuests& guests) = 0;
 		void get_paid();
         void receive_tip(int tip);
-    friend std::ostream& operator<<(std::ostream &os, Worker &w);
+
+    friend ostream& operator<<(ostream &os, Worker &w);
 };
 
+ostream& operator<<(ostream &os, Worker &w);
 
 #endif

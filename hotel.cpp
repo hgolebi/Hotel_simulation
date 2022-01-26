@@ -7,6 +7,10 @@
 
 using namespace std;
 
+unsigned SEED = chrono::system_clock::now().time_since_epoch().count();
+mt19937 generator (SEED);  // mt19937 is a standard mersenne_twister_engine
+
+
 Hotel::Hotel(string name, int capital)
 {
     this-> name = name;
@@ -25,28 +29,29 @@ int Hotel::get_capital()
 
 void Hotel::Info()
 {
-    cout << "LISTA GOŚCI: " << endl;
+    cout << "LIST OF GUESTS: " << endl;
+
     for (int i = 0; i < guests.size(); i++) {
         cout << *(guests[i]);
-     }
+    }
+
     cout << endl;
+    cout << "LIST OF WORKERS: " << endl;
 
-    // Test Rooms from File
-    // for (int i = 0; i < num; i++) {
-    //    cout << "Type: " << h.rooms[i]->get_type() << " "
-    //    << "Number of beds: " << h.rooms[i]->get_number_of_beds() << " "
-    //    << "Area: " << h.rooms[i]->get_area() << " "
-    //    << "Fee: " << h.rooms[i]->get_fee() << " "
-    //    << "Additional furniture: " << h.rooms[i]->get_additional_furniture() << "\n";
-    // }
+    map<string, vector<Worker*>>::iterator it;
+    for (it=workers.begin(); it!=workers.end(); ++it){
+       for (int i=0; i<it->second.size(); i++)
+           cout << it->first << " " << "ID: " << it->second[i]->get_id() << " "
+           << "Cash: $" << it->second[i]->get_cash() << endl;
+    }
 
-    // map<string, vector<Worker*>>::iterator it;
-    // Test Workers from File
-    // for (it=h.workers.begin(); it!=h.workers.end(); ++it) {
-    //    for (int i=0; i<it->second.size(); i++)
-    //        cout << it->first << " " << "Id: " << it->second[i]->get_id() << " "
-    //        << "Cash: " << it->second[i]->get_cash() << endl;
-    // }
+    cout << endl;
+    cout << "LIST OF ROOMS: " << endl;
+
+    for (int i = 0; i < rooms.size(); i++) {
+       cout << *(rooms[i]);
+    }
+
 }
 
 void Hotel::Add_Guests(int id, int size, int acc_length, int cash)
@@ -96,7 +101,24 @@ Hotel::~Hotel()
         delete &(it->second);
 }
 
+void sleep(float seconds){
+    clock_t startClock = clock();
+    float secondsAhead = seconds * CLOCKS_PER_SEC;
+    // do nothing until the elapsed time has passed.
+    while(clock() < startClock+secondsAhead);
+    return;
+}
+
 void Hotel::Simulate()
 {
-    return;
+    cout << "Hello" << endl;
+    sleep(0.5);
+    cout << "Waited 5s\n";
+
+    Info();
+    rooms[1]->change_guests(*(guests[2]));
+
+    Info();
+
+    cout << generator()%1000000;
 }

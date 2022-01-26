@@ -14,7 +14,7 @@ class Room
         double area;
         double fee;
         bool additional_furniture;
-        GroupOfGuests guests;
+        GroupOfGuests *guests;
     public:
         Room(int, std::string, int, double, double, bool);
         void change_guests(GroupOfGuests &guests);
