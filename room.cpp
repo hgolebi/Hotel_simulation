@@ -51,7 +51,8 @@ bool Room::get_additional_furniture() const
 
 ostream& operator<<(ostream& os, Room& r)
 {
-    if (r.guests != NULL)
+    GroupOfGuests g;
+    if ((r.guests == g) != true)
     {
         os<<"Group no. "<<g.get_id()<<" consisting of "<<g.get_size()<<" people stays in room "<<g.get_room_id()<<"."<<endl;
         os<<"Staying for: "<<g.get_acc_length()<<" day(s). Available cash: "<<g.get_cash()<<"$"<<endl;
