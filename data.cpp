@@ -79,7 +79,7 @@ void Data::loadWorkers(Hotel &h, int num)
 {
     ifstream fileIn;
 
-    string type_of_worker;
+    int type_of_worker;
     int id;
     int cash;
 

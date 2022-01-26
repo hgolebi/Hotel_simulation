@@ -13,7 +13,7 @@ class Simulation
         virtual void Simulate() = 0;
         virtual void Info() = 0;
         virtual void Add_Room(int, string, int, double, double, bool) = 0;
-        virtual void Add_Worker(string, int, int) = 0;
+        virtual void Add_Worker(int, int, int) = 0;
         virtual void Add_Guests(int, int, int, int) = 0;
         virtual ~Simulation() = 0;
 };

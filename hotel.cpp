@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <iomanip>
 #include <vector>
 #include <map>
 #include <random>
@@ -7,6 +8,13 @@
 #include "hotel.h"
 
 using namespace std;
+
+void sleep(float seconds){
+    clock_t startClock = clock();
+    float secondsAhead = seconds * CLOCKS_PER_SEC;
+    while(clock() < startClock+secondsAhead);
+    return;
+}
 
 unsigned SEED = std::chrono::system_clock::now().time_since_epoch().count();
 mt19937 generator (SEED);
@@ -34,6 +42,12 @@ void Hotel::set_time_interval(int time_interval)
 
 void Hotel::Info()
 {
+    cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+    cout << setw(25) << right <<"CAPITAL OF THE HOTEL: $" << capital << endl;
+    cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+
+    sleep(1.5);
+
     cout << "LIST OF GUESTS: " << endl;
 
     for (int i = 0; i < guests.size(); i++) {
@@ -71,27 +85,27 @@ void Hotel::Add_Room(int id, std::string type, int number_of_beds, double area, 
     rooms.push_back(r);
 }
 
-void Hotel::Add_Worker(string type_of_worker, int id, int cash)
+void Hotel::Add_Worker(int type_of_worker, int id, int cash)
 {
-    if (type_of_worker == "croupier")
+    if (type_of_worker == 0)
     {
         Croupier *worker = new Croupier(id, cash);
         workers["Croupier"].push_back(worker);
     }
-    else if (type_of_worker == "receptionist")
+    else if (type_of_worker == 1)
     {
-        Receptionist *worker = new Receptionist(id, cash);
-        workers["Receptionist"].push_back(worker);
+        RoomService *worker = new RoomService(id, cash);
+        workers["Room_service"].push_back(worker);
     }
-    else if (type_of_worker == "waiter")
+    else if (type_of_worker == 2)
     {
         Waiter *worker = new Waiter(id, cash);
         workers["Waiter"].push_back(worker);
     }
-    else if (type_of_worker == "room_service")
+    else if (type_of_worker == 3)
     {
-        RoomService *worker = new RoomService(id, cash);
-        workers["Room_service"].push_back(worker);
+        Receptionist *worker = new Receptionist(id, cash);
+        workers["Receptionist"].push_back(worker);
     }
 }
 
@@ -106,25 +120,21 @@ Hotel::~Hotel()
         delete &(it->second);
 }
 
-void sleep(float seconds){
-    clock_t startClock = clock();
-    float secondsAhead = seconds * CLOCKS_PER_SEC;
-    // do nothing until the elapsed time has passed.
-    while(clock() < startClock+secondsAhead);
-    return;
-}
-
 void Hotel::Accomodation(GroupOfGuests &guests)
 {
     for (int i=0; i<rooms.size(); i++)
     {
-        if (guests.get_cash() >= rooms[i]->get_fee()*guests.get_acc_length() && guests.get_size() <= rooms[i]->get_number_of_beds())
+        if (rooms[i]->guests == nullptr)
         {
+            if (guests.get_cash() >= rooms[i]->get_fee()*guests.get_acc_length() && guests.get_size() <= rooms[i]->get_number_of_beds())
+            {
             guests.pay(rooms[i]->get_fee()*guests.get_acc_length());
+            capital+=rooms[i]->get_fee()*guests.get_acc_length();
             rooms[i]->change_guests(guests);
             cout << "Guests no. "<<guests.get_id()<<" accomodated in room no. "<<rooms[i]->get_id()<<endl;
-            sleep(3);
+            sleep(2);
             return;
+            }
         }
     }
     return;
@@ -135,12 +145,19 @@ void Hotel::Simulate()
     cout << "Welcome to our Hotel" << endl;
     cout << "Hotel will work in the span of " << time_interval << " days" << endl;
     cout << endl;
+    sleep(2);
 
     for (int i=1; i<=time_interval; i++)
     {
         cout << "======================================" << endl;
         cout << "DAY " << i << endl;
         cout << "======================================" << endl;
+
+        sleep(2);
+
+        Info();
+
+        sleep(8);
 
         for (auto guest : guests)
         {
@@ -154,6 +171,7 @@ void Hotel::Simulate()
                 case 0:
                 {
                     capital += guest->extend_the_time_of_accomodation(generator()%5, rooms[guest->get_room_id()]->get_fee());
+                    break;
                 }
                 case 1:
                 {
@@ -167,6 +185,7 @@ void Hotel::Simulate()
                     Worker *W = workers["Room_service"][x];
                     W->work(*guest);
                     W->receive_tip(guest->give_tip(W->get_id()));
+                    break;
                 }
                 case 2:
                 {
@@ -178,7 +197,9 @@ void Hotel::Simulate()
                     capital += cash_spent;
                     int x = generator()%workers["Waiter"].size();
                     Worker *W = workers["Waiter"][x];
+                    W->work(*guest);
                     W->receive_tip(guest->give_tip(W->get_id()));
+                    break;
                 }
                 case 3:
                 {
@@ -189,7 +210,9 @@ void Hotel::Simulate()
                     }
                     int x = generator()%workers["Receptionist"].size();
                     Worker *W = workers["Receptionist"][x];
+                    W->work(*guest);
                     W->receive_tip(guest->give_tip(W->get_id()));
+                    break;
                 }
                 case 4:
                 {
@@ -203,14 +226,15 @@ void Hotel::Simulate()
                     Worker *W = workers["Croupier"][x];
                     W->work(*guest);
                     W->receive_tip(guest->give_tip(W->get_id()));
+                    break;
                 }
             }
+            cout << endl;
+            sleep(5);
+        }
+        for (auto room : rooms)
+        {
+            room->checkout();
         }
     }
-
-    Info();
-    rooms[1]->change_guests(*(guests[2]));
-
-    Info();
-
 }
