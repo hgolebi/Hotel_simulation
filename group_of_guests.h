@@ -17,6 +17,7 @@ class GroupOfGuests
         GroupOfGuests(const GroupOfGuests& source);
         GroupOfGuests& operator=(const GroupOfGuests& source);
         void set_room_id(int room_id);
+        void pay(int prize);
         void decrease_acc_length(int days = 1);
         int get_id() const;
         int get_cash() const;
@@ -26,7 +27,7 @@ class GroupOfGuests
         int extend_the_time_of_accomodation(int days, int prize);
         int order_the_meal();
         int go_to_the_restaurant();
-        void demand_taxi();
+        bool demand_taxi();
         int go_to_the_casino();
         int give_tip(int worker_id);
 

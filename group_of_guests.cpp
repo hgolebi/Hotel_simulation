@@ -47,6 +47,11 @@ void GroupOfGuests::set_room_id(int room_id)
     this->room_id = room_id;
 }
 
+void GroupOfGuests::pay(int prize)
+{
+    this->cash -= prize;
+}
+
 void GroupOfGuests::decrease_acc_length(int days)
 {
     acc_length -= days;
@@ -151,11 +156,12 @@ int GroupOfGuests::go_to_the_restaurant()
     return cash_spent;
 }
 
-void GroupOfGuests::demand_taxi()
+bool GroupOfGuests::demand_taxi()
 {
     if (cash < 10)
     {
         cout<<"Guests no. "<<get_id()<<" from room "<<get_room_id()<<" wanted to call for taxi but they couldn't afford it"<<endl;
+        return false;
     }
     int cash_spent = random() % 100 + 10;
     if (cash_spent > cash)
@@ -165,6 +171,7 @@ void GroupOfGuests::demand_taxi()
     cout<<"Guests no. "<<get_id()<<" from room "<<get_room_id()<<" want hotel receptionist to call for a taxi "<<endl;
     cout<<"This course will cost them "<<cash_spent<<"$"<<endl;
     cash -= cash_spent;
+    return true;
 }
 
 int GroupOfGuests::go_to_the_casino()

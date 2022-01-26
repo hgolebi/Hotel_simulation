@@ -59,7 +59,7 @@ void Data::loadRooms(Hotel &h, int num)
 
     string line;
     getline(fileIn, line);
-    if (line != "id type 	number_of_beds	 area 	fea	 additional_furniture")
+    if (line != "id type number_of_beds area fee additional_furniture")
     {
         cerr << "WRONG FILE HEAD LINE";
     }
@@ -90,14 +90,14 @@ void Data::loadWorkers(Hotel &h, int num)
 
     string line;
     getline(fileIn, line);
-    if (line != "type_of_worker 	id 	cash")
+    if (line != "id profession cash")
     {
         cerr << "WRONG FILE HEAD LINE";
     }
 
     for (int i=0; i<num && !fileIn.eof(); i++)
     {
-        fileIn >> type_of_worker >> id >> cash;
+        fileIn >> id >> type_of_worker >> cash;
         h.Add_Worker(type_of_worker, id, cash);
     }
 
