@@ -18,6 +18,7 @@ class Room
     public:
         Room(int, std::string, int, double, double, bool);
         void change_guests(GroupOfGuests &guests);
+        void checkout();
         int get_id() const;
         std::string get_type() const;
         int get_number_of_beds() const;
