@@ -11,9 +11,10 @@ class Simulation
 {
     public:
         virtual void Simulate() = 0;
-        virtual void Read_Guests_From_File(string) = 0;
-        virtual void Read_Rooms_From_File(string) = 0;
-        virtual void Read_Workers_From_File(string) = 0;
+        virtual void Info() = 0;
+        virtual void Add_Room(int, string, int, double, double, bool) = 0;
+        virtual void Add_Worker(string, int, int) = 0;
+        virtual void Add_Guests(int, int, int, int) = 0;
         virtual ~Simulation() = 0;
 };
 

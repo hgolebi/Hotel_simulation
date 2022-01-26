@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <random>
+#include <ctime>
 #include "hotel.h"
 #include "simulation.h"
 #include "group_of_guests.h"
@@ -10,6 +11,14 @@
 #include <fstream>
 
 using namespace std;
+
+void sleep(float seconds){
+    clock_t startClock = clock();
+    float secondsAhead = seconds * CLOCKS_PER_SEC;
+    // do nothing until the elapsed time has passed.
+    while(clock() < startClock+secondsAhead);
+    return;
+}
 
 int main(int argc, char* argv[])
 {
@@ -45,7 +54,11 @@ int main(int argc, char* argv[])
     handle.loadRooms(hotel, number_of_rooms);
     handle.loadWorkers(hotel, number_of_workers);
 
+    cout << "Hello waiter" << endl;
+    sleep(5.0);
+    cout << "Waited 5s\n";
 
+    hotel.Info();
 
     return 0;
 }
