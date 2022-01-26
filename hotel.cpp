@@ -7,9 +7,8 @@
 
 using namespace std;
 
-unsigned SEED = chrono::system_clock::now().time_since_epoch().count();
-mt19937 generator (SEED);  // mt19937 is a standard mersenne_twister_engine
-
+unsigned SEED = std::chrono::system_clock::now().time_since_epoch().count();
+mt19937 generator (SEED);
 
 Hotel::Hotel(string name, int capital)
 {
@@ -111,8 +110,20 @@ void sleep(float seconds){
 
 void Hotel::Accomodation(GroupOfGuests &guests)
 {
-
+    for (int i=0; i<rooms.size(); i++)
+    {
+        if (guests.get_cash() >= rooms[i]->get_fee()*guests.get_acc_length() && guests.get_size() <= rooms[i]->get_number_of_beds())
+        {
+            rooms[i]->change_guests(guests);
+            cout << "Guests no. "<<guests.get_id()<<" accomodated in room no. "<<rooms[i]->get_id()<<endl;
+        }
+    }
 }
+
+//     if (guests.get_room_id() == -1) // don't have a room
+
+// Room r = *rooms[generator()%(rooms.size())];
+//             if (r.guests == nullptr)
 
 void Hotel::Simulate()
 {
@@ -125,5 +136,4 @@ void Hotel::Simulate()
 
     Info();
 
-    cout << generator()%1000000;
 }

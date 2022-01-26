@@ -25,6 +25,7 @@ class Room
         double get_fee() const;
         bool get_additional_furniture() const;
 
+        friend class Hotel;
         friend ostream& operator<<(ostream& os, Room& r);
 };
 
