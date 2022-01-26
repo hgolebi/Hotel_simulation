@@ -26,6 +26,8 @@ int main(int argc, char* argv[])
     Hotel hotel("Hotel");
 
     int time_interval = atoi(argv[1]);
+    hotel.set_time_interval(time_interval);
+
     string g_addr(argv[2]);
     int number_of_guests = atoi(argv[3]);
     string r_addr(argv[4]);

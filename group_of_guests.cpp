@@ -47,7 +47,7 @@ void GroupOfGuests::set_room_id(int room_id)
     this->room_id = room_id;
 }
 
-void GroupOfGuests::decrease_acc_length(int days = 1)
+void GroupOfGuests::decrease_acc_length(int days)
 {
     acc_length -= days;
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <map>
 #include <random>
@@ -24,6 +25,11 @@ string Hotel::get_name()
 int Hotel::get_capital()
 {
     return capital;
+}
+
+void Hotel::set_time_interval(int time_interval)
+{
+    this -> time_interval = time_interval;
 }
 
 void Hotel::Info()
@@ -114,13 +120,14 @@ void Hotel::Accomodation(GroupOfGuests &guests)
     {
         if (guests.get_cash() >= rooms[i]->get_fee()*guests.get_acc_length() && guests.get_size() <= rooms[i]->get_number_of_beds())
         {
+            // zmniejsz cash
             rooms[i]->change_guests(guests);
             cout << "Guests no. "<<guests.get_id()<<" accomodated in room no. "<<rooms[i]->get_id()<<endl;
+            sleep(3);
+            return;
         }
     }
 }
-
-//     if (guests.get_room_id() == -1) // don't have a room
 
 // Room r = *rooms[generator()%(rooms.size())];
 //             if (r.guests == nullptr)
@@ -128,7 +135,76 @@ void Hotel::Accomodation(GroupOfGuests &guests)
 void Hotel::Simulate()
 {
     cout << "Welcome to our Hotel" << endl;
-    sleep(0.5);
+    cout << "Hotel will work in the span of " << time_interval << " days" << endl;
+    cout << endl;
+
+    for (int i=1; i<=time_interval; i++)
+    {
+        cout << "======================================" << endl;
+        cout << "DAY " << i << endl;
+        cout << "======================================" << endl;
+        // jesli nie zyja w hotelu to akomoduje
+        // a jesli zyja to losujesz jedna metode
+        for (auto guest : guests)
+        {
+            if (guest->get_room_id() == -1)
+            {
+                Accomodation(*guest);
+            }
+            int x = generator()%5;
+            switch(x)
+            {
+                case 0:
+                {
+                    capital += guest->extend_the_time_of_accomodation(generator()%5, rooms[guest->get_room_id()]->get_fee());
+
+                }
+                case 1:
+                {
+                    int cash_spent = guest->order_the_meal();
+                    if (cash_spent == 0)
+                    {
+                        break;
+                    }
+                    capital += cash_spent;
+                    int x = generator()%workers["Room_service"].size();
+                    Worker *W = workers["Room_service"][x];
+                    W->work(*guest);
+                    W->receive_tip(guest->give_tip(W->get_id()));
+                }
+                case 2:
+                {
+                    int cash_spent = guest->go_to_the_restaurant();
+                    if (cash_spent == 0)
+                    {
+                        break;
+                    }
+                    capital += cash_spent;
+                    int x = generator()%workers["Waiter"].size();
+                    Worker *W = workers["Waiter"][x];
+                    W->receive_tip(guest->give_tip(W->get_id()));
+                }
+                case 3:
+                {
+
+                }
+                case 4:
+                {
+                    int cash_spent = guest->go_to_the_casino();
+                    if (cash_spent == 0)
+                    {
+                        break;
+                    }
+                    capital += cash_spent;
+                    int x = generator()%workers["Croupier"].size();
+                    Worker *W = workers["Croupier"][x];
+                    W->work(*guest);
+                    W->receive_tip(guest->give_tip(W->get_id()));
+                }
+            }
+        }
+    }
+
     cout << "Waited 0.5s\n";
 
     Info();

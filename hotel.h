@@ -37,6 +37,7 @@ class Hotel : public Simulation
 
         string get_name();
         int get_capital();
+        void set_time_interval(int time_interval);
         void Simulate() override;
 
         friend class Data;
