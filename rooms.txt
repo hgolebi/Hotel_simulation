@@ -1,15 +1,15 @@
-type 	number_of_beds	 area 	fea	 additional_furniture
-single		1	   50	 420		  0
-double		1	   75	 520 	          0
-double		1          80	 475		  0
-triple		3          100   600              0
-triple		3          40    350              0
-single 		1          35    315              0
-quadruple	4	   95    610              0
-studio		3          200   1000             1
-single		1          45    325              0
-single		1          50    345              0
-quadruple	4          110   645              0
-quadruple	3	   125   675              0
-apartment	4          300   2500             1
-apartment	2          250   2000             1
+id type 	number_of_beds	 area 	fea	 additional_furniture
+1   single		1	   50	 420		  0
+2   double		1	   75	 520 	          0
+3   double		1          80	 475		  0
+4   triple		3          100   600              0
+5   triple		3          40    350              0
+6   single 		1          35    315              0
+7   quadruple	4	   95    610              0
+8   studio		3          200   1000             1
+9   single		1          45    325              0
+10   single		1          50    345              0
+11   quadruple	4          110   645              0
+12   quadruple	3	   125   675              0
+13   apartment	4          300   2500             1
+14   apartment	2          250   2000             1
