@@ -2,7 +2,7 @@
 #include <chrono>
 #include <random>
 #include "hotel.h"
-#include "simulation.h"
+#include "hotel_interface.h"
 #include "group_of_guests.h"
 #include "data.h"
 #include "Invalid_File_Exception.h"
