@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Simulation
+class Hotel_Interface
 {
     public:
         virtual void Simulate() = 0;
@@ -18,7 +18,7 @@ class Simulation
         virtual void Add_Worker(int, int, int) = 0;
         virtual void Add_Guests(int, int, int, int) = 0;
         virtual void Accomodation(GroupOfGuests &guests) = 0;
-        virtual ~Simulation() = 0;
+        virtual ~Hotel_Interface() = 0;
 };
 
 #endif

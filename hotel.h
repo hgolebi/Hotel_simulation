@@ -9,7 +9,7 @@
 #include "room.h"
 #include "worker.h"
 #include "group_of_guests.h"
-#include "simulation.h"
+#include "hotel_interface.h"
 #include "croupier.h"
 #include "receptionist.h"
 #include "waiter.h"
@@ -17,7 +17,7 @@
 
 using namespace std;
 
-class Hotel : public Simulation
+class Hotel : public Hotel_Interface
 {
     private:
         int time_interval;

@@ -1,4 +1,4 @@
-#include "simulation.h"
+#include "hotel_interface.h"
 #include "hotel.h"
 
 #include <string>
@@ -7,4 +7,4 @@
 
 using namespace std;
 
-Simulation::~Simulation() {};
+Hotel_Interface::~Hotel_Interface() {};
