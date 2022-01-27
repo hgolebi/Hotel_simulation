@@ -1,4 +1,5 @@
 #include "data.h"
+#include "Invalid_File_Exception.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ void Data::loadGuests(Hotel &h, int num)
 
     fileIn.open(g_address);
     if (!fileIn.good()) {
-        cerr << "FILE ERROR";
+        throw Invalid_File_Exception(g_address);
     }
 
     string line;
@@ -54,7 +55,7 @@ void Data::loadRooms(Hotel &h, int num)
 
     fileIn.open(r_address);
     if (!fileIn.good()) {
-        cerr << "FILE ERROR";
+        throw Invalid_File_Exception(r_address);
     }
 
     string line;
@@ -85,7 +86,7 @@ void Data::loadWorkers(Hotel &h, int num)
 
     fileIn.open(w_address);
     if (!fileIn.good()) {
-        cerr << "FILE ERROR";
+        throw Invalid_File_Exception(w_address);
     }
 
     string line;

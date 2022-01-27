@@ -1,4 +1,5 @@
 #include "Invalid_File_Exception.h"
+#include <iostream>
 
-Invalid_File_Exception::Invalid_File_Exception(double price_value) :
-    std::invalid_argument("Niedodatnia cena biletu: " + std::to_string(price_value)) {}
+Invalid_File_Exception::Invalid_File_Exception(std::string file_name) :
+    std::invalid_argument("Nieprawidłowa nazwa pliku: " + file_name) {}

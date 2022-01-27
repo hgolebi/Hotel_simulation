@@ -5,6 +5,7 @@
 #include "simulation.h"
 #include "group_of_guests.h"
 #include "data.h"
+#include "Invalid_File_Exception.h"
 
 #include <string>
 #include <fstream>
@@ -36,10 +37,18 @@ int main(int argc, char* argv[])
     int number_of_workers = atoi(argv[7]);
 
     // loading files
-    Data handle(g_addr, r_addr, w_addr);
-    handle.loadGuests(hotel, number_of_guests);
-    handle.loadRooms(hotel, number_of_rooms);
-    handle.loadWorkers(hotel, number_of_workers);
+    try
+    {
+        Data handle(g_addr, r_addr, w_addr);
+        handle.loadGuests(hotel, number_of_guests);
+        handle.loadRooms(hotel, number_of_rooms);
+        handle.loadWorkers(hotel, number_of_workers);
+    }
+    catch(Invalid_File_Exception& e)
+    {
+        cout << "Zlapano wyjatek typu Invalid_File_Exception: " << e.what() << endl;
+        return 0;
+    }
 
     hotel.Simulate();
 
