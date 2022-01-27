@@ -50,7 +50,7 @@ void Hotel::Info()
 
     cout << "LIST OF GUESTS: " << endl;
 
-    for (int i = 0; i < guests.size(); i++) {
+    for (unsigned i = 0; i < guests.size(); i++) {
         cout << *(guests[i]);
     }
 
@@ -61,7 +61,7 @@ void Hotel::Info()
 
     map<string, vector<Worker*>>::iterator it;
     for (it=workers.begin(); it!=workers.end(); ++it){
-       for (int i=0; i<it->second.size(); i++)
+       for (unsigned i=0; i<it->second.size(); i++)
            cout << it->first << " " << "ID: " << it->second[i]->get_id() << " "
            << "Cash: $" << it->second[i]->get_cash() << endl;
     }
@@ -71,7 +71,7 @@ void Hotel::Info()
     cout << endl;
     cout << "LIST OF ROOMS: " << endl;
 
-    for (int i = 0; i < rooms.size(); i++) {
+    for (unsigned i = 0; i < rooms.size(); i++) {
        cout << *(rooms[i]);
     }
     cout << endl;
@@ -134,7 +134,7 @@ void Hotel::Accomodation(GroupOfGuests &guests)
     }
 
     Room *r = nullptr;
-    for (int i=1; i<rooms.size(); i++)
+    for (unsigned i=1; i<rooms.size(); i++)
     {
         if (rooms[i]->guests == nullptr)
         {
@@ -166,8 +166,8 @@ void Hotel::Accomodation(GroupOfGuests &guests)
 void Hotel::Simulate()
 {
     cout << "===========================================================" << endl;
-    cout << "Welcome to our " << name << endl;
-    cout << "Hotel will work in the span of " << time_interval << " days" << endl;
+    cout << "Welcome to our " << name << ". " << endl;
+    cout << "Hotel will work in the span of " << time_interval << " days." << endl;
     cout << "===========================================================" << endl;
     cout << "When you get into a hotel room, you lock the door, and you" << endl;
     cout << "know there is a secrecy, there is a luxury, there is a fantasy" << endl;
@@ -294,7 +294,7 @@ void Hotel::Simulate()
             map<string, vector<Worker*>>::iterator it;
             for (it=workers.begin(); it!=workers.end(); ++it)
             {
-                for (int i=0; i<it->second.size(); i++)
+                for (unsigned i=0; i<it->second.size(); i++)
                 {
                     it->second[i]->get_paid(); // salary
                 }
