@@ -165,14 +165,14 @@ void Hotel::Accomodation(GroupOfGuests &guests)
 
 void Hotel::Simulate()
 {
-    cout << "===========================================================" << endl;
+    cout << "==============================================================" << endl;
     cout << "Welcome to our " << name << ". " << endl;
     cout << "Hotel will work in the span of " << time_interval << " days." << endl;
-    cout << "===========================================================" << endl;
+    cout << "==============================================================" << endl;
     cout << "When you get into a hotel room, you lock the door, and you" << endl;
     cout << "know there is a secrecy, there is a luxury, there is a fantasy" << endl;
     cout << "There is comfort. There is reassurance." << endl;
-    cout << "===========================================================" << endl;
+    cout << "==============================================================" << endl;
     sleep(7);
     cout << endl;
 
