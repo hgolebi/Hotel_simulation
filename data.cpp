@@ -1,5 +1,6 @@
 #include "data.h"
 #include "Invalid_File_Exception.h"
+#include "Invalid_File_Header_Exception.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ void Data::loadGuests(Hotel &h, int num)
     getline(fileIn, line);
     if (line != "id size acc_length cash")
     {
-        cerr << "WRONG FILE HEAD LINE";
+        throw Invalid_File_Header_Exception(line);
     }
 
     for (int i=0; i<num && !fileIn.eof(); i++)
@@ -62,7 +63,7 @@ void Data::loadRooms(Hotel &h, int num)
     getline(fileIn, line);
     if (line != "id type number_of_beds area fee additional_furniture")
     {
-        cerr << "WRONG FILE HEAD LINE";
+        throw Invalid_File_Header_Exception(line);
     }
 
     for (int i=0; i<num && !fileIn.eof(); i++)
@@ -93,7 +94,7 @@ void Data::loadWorkers(Hotel &h, int num)
     getline(fileIn, line);
     if (line != "id profession cash")
     {
-        cerr << "WRONG FILE HEAD LINE";
+        throw Invalid_File_Header_Exception(line);
     }
 
     for (int i=0; i<num && !fileIn.eof(); i++)

@@ -6,6 +6,7 @@
 #include "group_of_guests.h"
 #include "data.h"
 #include "Invalid_File_Exception.h"
+#include "Invalid_File_Header_Exception.h"
 
 #include <string>
 #include <fstream>
@@ -47,6 +48,11 @@ int main(int argc, char* argv[])
     catch(Invalid_File_Exception& e)
     {
         cout << "Zlapano wyjatek typu Invalid_File_Exception: " << e.what() << endl;
+        return 0;
+    }
+    catch(Invalid_File_Header_Exception& e)
+    {
+        cout << "Zlapano wyjatek typu Invalid_File_Header_Exception: " << e.what() << endl;
         return 0;
     }
 
